@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style id="css">
+        *{margin:0;padding:0;list-style: none;}
+        .waper{width:800px;margin:100px auto 0;}
+        #picList{width:800px;height: 360px;-webkit-perspective:800px;}
+        #picList li{width: 25px;height: 360px;position: relative;-webkit-transform-style:preserve-3d;/*-webkit-perspective;-origin:center center;*/float: left;transition:1s;}
+        #picList li a{width: 100%;height:100%;position: absolute;left: 0;top:0;}
+        #picList li a:nth-of-type(1){background: url(9img/1.jpg) no-repeat;}
+
+        #picList li a:nth-of-type(2){background: url(9img/2.jpg) no-repeat;-webkit-transform-origin:right;-webkit-transform:rotateY(-90deg);right: 0;}
+        #picList li a:nth-of-type(3){background: url(9img/3.jpg) no-repeat;-webkit-transform:translateZ(-25px);}
+
+        #picList li a:nth-of-type(4){background: url(9img/4.jpg) no-repeat;-webkit-transform-origin:left;-webkit-transform:rotateY(90deg);left:0;}
+
+        /*#picList li span{position: absolute;width: 25px;height: 360px;background: #333;}
+
+        #picList li span:nth-of-type(1){top:-360px;-webkit-transform-origin:bottom;top:-360px;-webkit-transform:rotateX(90deg);}
+         #picList li span:nth-of-type(2){-webkit-transform-origin:top;top:360px;-webkit-transform:rotateX(-90deg);}*/
+
+        #btnList{float: right;padding:20px 0;}
+        #btnList li{width: 20px;height: 20px;background:#000;color: #fff;border-radius: 50%;
+            font:14px/20px Arial;float: left;text-align: center;margin-left: 10px;}
+        #btnList li.active{background: orange;}
+        </style>
+        <script>
+            window.onload = function(){
+                var oPicList = document.getElementById('picList');
+                var aBtn = document.getElementById('btnList').getElementsByTagName('li');
+                var oCss = document.getElementById("css");
+                var sLi = "";
+                var iLiw = 25;
+                var iCss = "";
+                var iZindex = 0;
+                var iLength = oPicList.clientWidth/iLiw;
+                for(var i=0;i<iLength;i++){
+                    i>iLength/2 ? iZindex-- : iZindex++;
+                    sLi += ` <li>
+                                <a href="#"></a>
+                                <a href="#"></a>
+                                <a href="#"></a>
+                                <a href="#"></a>
+                            </li>`
+                    iCss += '#picList li:nth-of-type('+ (i+1) +') a{background-position:-'+ i*iLiw + 'px 0}';
+                    iCss += '#picList li:nth-of-type('+ (i+1) +'){z-index:'+ iZindex +'}';
+                }
+                oPicList.innerHTML = sLi;
+                oCss.innerHTML += iCss;
+                var aLi = oPicList.getElementsByTagName('li');
+                for(var i=0;i<aBtn.length;i++){
+                    aBtn[i].index = i;
+                    aBtn[i].onclick = function(){
+                        for(var j=0;j<aLi.length;j++){
+                            aLi[j].style.transition = "0.5s "+ j*20 +"ms";
+                            aLi[j].style.WebkitTransform = "rotateY(" + this.index*90 + "deg)";
+                            console.log(aLi[j]);
+                        }
+                        for(var m=0;m<aBtn.length;m++){
+                            aBtn[m].className = "";
+                        }
+                        this.className = "active";
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="waper">
+            <ul id="picList">
+            </ul>
+            <ol id="btnList">
+                <li class="active">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ol>
+        </div>
+    </body>
+</html>

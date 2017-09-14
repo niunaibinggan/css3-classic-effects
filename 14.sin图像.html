@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style id="css">
+*{margin:0;padding:0;list-style: none;}
+#box{width: 5px;height: 5px;background: red;position:absolute;top: 200px;left: 100px;}
+.box{border:1px solid #000;position:absolute;}
+        </style>
+        <script> 
+window.onload = function(){
+    var oBox = document.getElementById('box');
+    var T = 200;
+    var L = 100;
+    var val = 70;
+    var n = 0;
+    setInterval(function(){
+        n++;
+        oBox.style.left = L + (n*Math.PI/180)*val + "px";
+        oBox.style.top = T - Math.sin(n*Math.PI/180)*val + "px";
+        var oDiv = document.createElement('div');
+        oDiv.className = "box";
+        document.body.appendChild(oDiv);
+        oDiv.style.left = oBox.offsetLeft + "px";
+        oDiv.style.top = oBox.offsetTop + "px";
+    },10);
+
+    
+}
+        </script>
+    </head>
+    <body>
+<div id="box"></div>
+    </body>
+</html>

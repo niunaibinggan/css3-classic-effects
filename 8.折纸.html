@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+        *{margin:0;padding:0;list-style: none;}
+        @-webkit-keyframes show{
+            0%{ -webkit-transform:rotateX(-120deg);}
+            25%{ -webkit-transform:rotateX(30deg);}
+            50%{ -webkit-transform:rotateX(-15deg);}
+            75%{ -webkit-transform:rotateX(8deg);}
+            100%{ -webkit-transform:rotateX(0deg);}
+        }
+        @-webkit-keyframes hiden{
+            0%{ -webkit-transform:rotateX(0deg);}
+            100%{ -webkit-transform:rotateX(-120deg);}
+        }
+        .box{width:180px;margin:30px auto;position:relative;-webkit-perspective:800px;}
+        .box h3{width:100%;height:35px;background: orange;color: #fff;font:16px/35px '微软雅黑';text-align: center;position: relative;z-index: 100;cursor: pointer;}
+        .box div{position: absolute;top:27px;width: 100%;left: 0;/*-webkit-transform-style:;*/-webkit-transform-origin:top;-webkit-transform:rotateX(-120deg);}
+        .box span{display: block;height: 25px;background: #62e462;font:12px/25px '微软雅黑';text-align: center;color: #fff;box-shadow:inset 0 0 0 20px rgba(0,0,0,0.8); transition:1s;}
+        .box>div{top:35px;}
+        .box .show{-webkit-animation:1.2s show ease-in;-webkit-transform:rotateX(0deg);}
+        .box .show>span{box-shadow:inset 0 0 0 20px rgba(0,0,0,0);}
+        .box .hiden{-webkit-animation:0.5s hiden;-webkit-transform:rotateX(-120deg);}
+        </style>
+        <script>
+window.onload = function(){
+    var oBtn = document.getElementById('btn');
+    var aDiv = document.getElementById('box').getElementsByTagName('div');
+    var timer = null;
+    var iNow = 0;
+    var bOn = true;
+    oBtn.onclick = function(){
+        if(timer){
+            return false;
+        }
+        if(bOn){
+            iNow = 0;
+            timer = setInterval(showFn,180);
+         }else{
+            iNow = aDiv.length-1;
+            timer = setInterval(hidenFn,120);
+         }
+        bOn = !bOn;
+    }
+    function showFn(){
+        aDiv[iNow].className = "show";
+        iNow++;
+        if(iNow>=aDiv.length){
+            clearInterval(timer);
+            timer = null;
+        }
+    }
+     function hidenFn(){
+         console.log(iNow);
+        aDiv[iNow].className = "hiden";
+        iNow--;
+        if(iNow<0){
+            clearInterval(timer);
+            timer = null;
+        }
+    }
+}
+        </script>
+    </head>
+    <body>
+<div class="box" id="box">
+    <h3 id="btn">导航指南</h3>
+    <div>
+        <span>导航指南一</span>
+        <div>
+            <span>导航指南二</span>
+            <div>
+                <span>导航指南三</span>
+                <div>
+                    <span>导航指南四</span>
+                    <div>
+                        <span>导航指南五</span>
+                        <div>
+                            <span>导航指南六</span>
+                            <div>
+                                <span>导航指南七</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+</html>

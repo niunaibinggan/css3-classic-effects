@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+        *{margin:0;padding:0;list-style: none;}
+        .clearfix:after{content: "";clear: both;display: block;zoom:1;}
+        .list li{float: left;width: 100px;text-align: center;height: 30px;line-height: 30px;border-left: 1px solid #ddd;background: yellow;-webkit-transform:skewX(-30deg);position: relative;}
+        .list li a{color: #000;text-decoration: none; display: block;-webkit-transform:skewX(30deg); font-size: 12px;}
+        .list li span{position: absolute;left: 50%;top: 0;margin-left:-1px;display: block;width:2px;height:100%;background:yellow ;transition:0.8s;}
+        .list li:hover span{-webkit-transform:scaleX(50);background:rgba(108,245,85,0.7);}
+        </style>
+    </head>
+    <body>
+        <ul class="list clearfix">
+            <li><span></span><a href="#">导航一</a></li>
+            <li><span></span><a href="#">导航二</a></li>
+            <li><span></span><a href="#">导航三</a></li>
+            <li><span></span><a href="#">导航四</a></li>
+        </ul>
+    </body>
+</html>

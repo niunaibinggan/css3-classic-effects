@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style id="css">
+        *{margin:0;padding:0;list-style: none;}
+        #box{width:171px;height:68px;position:absolute;top:200px;left: 300px;background: url(13img/bg.png) no-repeat 0 0;}
+        #dot1{border:2px solid #000;border-radius: 50%;position: absolute;left: 118px;top: 33px;}
+        #dot2{border:2px solid #000;border-radius: 50%;position: absolute;left: 140px;top: 33px;}
+        </style>
+        <script> 
+window.onload = function(){
+    var oBox = document.getElementById('box');
+    var oDot1 = document.getElementById('dot1');
+    var oDot2 = document.getElementById('dot2');
+    var r = 4  // dot移动的范围
+    var L1 = 118;
+    var T1 = 33;
+    var L2 = 140;
+    var T2 = 33;
+    document.onmousemove = function(ev){
+        var ev = ev || window.event;
+        changeFn(oDot1,ev.clientX,ev.clientY,L1,T1);
+        changeFn(oDot2,ev.clientX,ev.clientY,L2,T2);
+
+        function changeFn(obj,x,y,l,t){
+            var changeX = 0;
+            var changeY = 0;
+            var b = Math.abs( x - ( obj.offsetLeft + obj.parentNode.offsetLeft) );
+            var a = Math.abs( y - ( obj.offsetTop + obj.parentNode.offsetTop) );
+            if( x > obj.offsetLeft + obj.parentNode.offsetLeft && y < obj.offsetTop + obj.parentNode.offsetTop){        // 右上
+                var changeX = Math.sin(Math.atan(b/a)) * r; 
+                var changeY = Math.cos(Math.atan(b/a)) * -r; 
+            }else if(x > obj.offsetLeft + obj.parentNode.offsetLeft && y > obj.offsetTop + obj.parentNode.offsetTop){       // 右下
+                var changeX = Math.sin(Math.atan(b/a)) * r; 
+                var changeY = Math.cos(Math.atan(b/a)) * r; 
+            }else if(x < obj.offsetLeft + obj.parentNode.offsetLeft && y > obj.offsetTop + obj.parentNode.offsetTop){       // 左下
+                var changeX = Math.sin(Math.atan(b/a)) * -r; 
+                var changeY = Math.cos(Math.atan(b/a)) * r; 
+            }else if(x < obj.offsetLeft + obj.parentNode.offsetLeft && y < obj.offsetTop + obj.parentNode.offsetTop){       // 左上
+                var changeX = Math.sin(Math.atan(b/a)) * -r; 
+                var changeY = Math.cos(Math.atan(b/a)) * -r; 
+            }
+            obj.style.left = l + changeX + "px";
+            obj.style.top = t + changeY + "px";
+        }
+    }
+}
+        </script>
+    </head>
+    <body>
+        <div id="box">
+            <div id="dot1"></div>
+            <div id="dot2"></div>
+        </div>
+    </body>
+</html>

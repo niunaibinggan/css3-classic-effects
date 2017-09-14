@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style id="css">
+        *{margin:0;padding:0;list-style: none;}
+        .waper{width: 100%;position: absolute;bottom:0; text-align: center;}
+        .waper img{width: 50px;}
+        </style>
+        <script> 
+            window.onload = function(){
+                var oBox = document.getElementById('box');
+                var aImg = document.getElementsByTagName('img');
+                document.onmousemove = function(ev){
+                    var ev = ev || window.event;
+                    for(var i=0;i<aImg.length;i++){
+                        var x = aImg[i].offsetLeft + aImg[i].offsetWidth/2;
+                        var y = aImg[i].offsetTop + aImg[i].offsetHeight/2 + oBox.offsetTop;
+
+                        var b = ev.clientX - x;
+                        var a = ev.clientY - y;
+                        var c = Math.sqrt(Math.pow(b,2) + Math.pow(a,2));
+                        var scale = 1 - c/200;
+                        if(scale < 0.5){
+                            scale = 0.5;
+                        }
+                        aImg[i].style.width = scale * 100 +"px";
+                        aImg[i].style.height = scale * 100 +"px";
+                    }
+                }
+            }  
+        </script>
+    </head>
+    <body>
+        <div class="waper" id="box">
+            <img src="10img/icon1.png">
+            <img src="10img/icon2.png">
+            <img src="10img/icon3.png">
+            <img src="10img/icon4.png">
+            <img src="10img/icon5.png">
+        </div>
+    </body>
+</html>

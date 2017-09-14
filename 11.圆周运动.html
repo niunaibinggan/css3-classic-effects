@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style id="css">
+        *{margin:0;padding:0;list-style: none;}
+        #dot{width: 10px;height: 10px;border-radius: 50%;background: red;position: absolute;left: 800px;top: 300px;}
+        .box{border: 1px solid #000;position:absolute;}
+        </style>
+        <script> 
+            window.onload = function(){
+                var oDot = document.getElementById('dot');
+                var r = 100;
+                var x = 700;
+                var y = 300;
+                var num = 0;
+                setInterval(function(){
+                    num++;
+                    var a = Math.sin(num*Math.PI/180) * r;
+                    var b = Math.cos(num*Math.PI/180) * r;
+                    oDot.style.left = x + b + "px";
+                    oDot.style.top = y + a + "px";
+
+                    var oBox = document.createElement("div");
+                    oBox.className = "box";
+                    document.body.appendChild(oBox);
+                    oBox.style.left = oDot.offsetLeft + "px";
+                    oBox.style.top = oDot.offsetTop + "px";
+                },10);
+            }
+        </script>
+    </head>
+    <body>
+        <div id="dot"></div>
+    </body>
+</html>

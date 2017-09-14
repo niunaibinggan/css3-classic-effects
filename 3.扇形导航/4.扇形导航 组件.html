@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style> 
+        *{margin:0;padding:0;list-style: none;}
+        body{background: #f9f9f9;}
+        #menu{width:50px;height: 50px;position: fixed;right: 20px;bottom: 20px;}
+        #menu_list{height: 42px;width: 42px;position: relative;margin: 4px;}
+        #menu_list img{width: 100%;border-radius: 21px;position: absolute;left: 0;top: 0;-webkit-transition:0.5s all ease;}
+        #home{width:50px;height: 50px;background:#f9f9f9 url(3img/home.png) no-repeat 0 0;background-size: 100%;border-radius: 25px;position: absolute;left: 0;top: 0;transition:1s;}
+        </style>
+    </head>
+    <body>
+        <div id="menu">
+            <div id="menu_list">
+                <img src="3img/icon1.png" alt="">
+                <img src="3img/icon2.png" alt="">
+                <img src="3img/icon3.png" alt="">
+                <img src="3img/icon4.png" alt="">
+                <img src="3img/icon5.png" alt="">
+            </div>
+            <div id="home"></div>
+        </div>
+        <script src="nav.js"></script>
+        <script>
+            (function(){
+                var oNav = new Nav({
+                    oHome : document.getElementById('home'),
+                    aImg : document.getElementById('menu_list').getElementsByTagName('img'),
+                    oR : -150,
+                    iTime : 80
+                });
+                oNav.init();
+            })()
+        </script>
+    </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+        *{margin:0;padding:0;list-style: none;}
+@-webkit-keyframes show{  
+    0%{      
+        -webkit-transform:rotateX(180deg);opacity: 0;
+    }
+    70%{
+        -webkit-transform:rotateX(-8deg);opacity: 1;
+    }
+    75%{
+        -webkit-transform:rotateX(5deg);opacity: 1;
+    }
+    80%{
+        -webkit-transform:rotateX(-6deg);opacity: 1;
+    }
+    85%{
+        -webkit-transform:rotateX(4deg);opacity: 1;
+    }
+    90%{
+        -webkit-transform:rotateX(-5deg);opacity: 1;
+    }
+    92%{
+        -webkit-transform:rotateX(2deg);opacity: 1;
+    }
+    94%{
+        -webkit-transform:rotateX(-3deg);opacity: 1;
+    }
+    95%{
+        -webkit-transform:rotateX(1deg);opacity: 1;
+    }
+    100%{
+        -webkit-transform:rotateX(0deg);opacity: 1;
+    } 
+}
+@-webkit-keyframes hidden{  
+    0%{      
+        -webkit-transform:rotateX(0deg);opacity: 1;
+    }
+    100%{
+        -webkit-transform:rotateX(-180deg);opacity: 0;
+    } 
+}
+.box{width: 500px;height: 225px;position: relative;margin:100px auto 0;-webkit-perspective:800px;-webkit-transform-style:preserve-3d;}
+.box span{position: absolute;top:80px;width: 40px;height: 40px;border-radius: 50%;text-align: center;line-height: 40px;font-size: 35px;background: #e6e5e5;color: #fff;}
+.box span:nth-of-type(1){left: -100px;}
+.box span:nth-of-type(2){right: -100px;}
+.box img{width: 500px;height: 225px;position: absolute;left: 0;top: 0;-webkit-transform-origin:bottom;-webkit-transform:rotateX(180deg);opacity: 0;}
+.box .show{-webkit-transform:rotateX(0deg);opacity: 1;-webkit-animation:0.9s show;}
+.box .hidden{-webkit-transform:rotateX(-180deg);opacity: 0;-webkit-animation:0.6s hidden;}
+        </style>
+        <script>
+        window.onload = function(){
+            var oBox = document.getElementById('box');
+            var aSpan = oBox.getElementsByTagName('span');
+            var aImg = oBox.getElementsByTagName('img');
+            var iNow = 0;
+            aSpan[1].onclick = function(){
+                aImg[iNow].className = "hidden";
+                iNow++;
+                if(iNow>=aImg.length){
+                    iNow = 0;
+                }
+                aImg[iNow].className = "show";
+            }
+            aSpan[0].onclick = function(){
+                aImg[iNow].className = "hidden";
+                iNow--;
+                if(iNow<=0){
+                    iNow = aImg.length-1;
+                }
+                aImg[iNow].className = "show";
+            }
+         }
+        </script>
+    </head>
+    <body>
+    <div class="box" id="box">
+        <span><</span>
+        <span>></span>
+        <img src="7img/1.jpg" class="show">
+        <img src="7img/2.jpg">
+        <img src="7img/3.jpg">
+        <img src="7img/4.jpg">
+    </div>
+    </body>
+</html>
